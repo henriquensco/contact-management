@@ -44,12 +44,13 @@ Route::prefix('/')->group(function () {
 
     Route::get('/contact/{id}/delete', function ($id) {
         $data = new ContactController();
+        $data = $data->showOne($id);
 
-        return view('delete', ['data' => $data->showOne($id)]);
+        return view('delete', ['data' => $data->original]);
     });
  });
 
 
- Route::post('/store', [ContactController::class, 'store']);
- Route::post('/update/{id}', [ContactController::class, 'update']);
- Route::post('/delete/{id}', [ContactController::class, 'delete']);
+Route::post('/store', [ContactController::class, 'store']);
+Route::put('/update/{id}', [ContactController::class, 'update']);
+Route::delete('/delete/{id}', [ContactController::class, 'delete']);
