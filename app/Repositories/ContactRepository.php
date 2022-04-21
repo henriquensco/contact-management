@@ -19,7 +19,7 @@ class ContactRepository
     {
         $arr = $this->contactModel->get();
 
-        return $arr;
+        return response()->json($arr, 200);
     }
 
     public function showOne(int $contactId)
@@ -34,7 +34,7 @@ class ContactRepository
             $arr = null;
         }
 
-        return $arr;
+        return response()->json($arr, 200);
     }
 
     public function store($params)
@@ -57,7 +57,7 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar salvar'); 
         }
 
-        return redirect('/');
+        return redirect('/', 201);
     }
 
     public function update($params, $contactId)
@@ -80,7 +80,7 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar atualizar'); 
         }
         
-        return redirect('/');
+        return redirect('/', 200);
     }
 
     public function delete($contactId)
@@ -93,7 +93,7 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar deletar'); 
         }
 
-        return redirect('/');
+        return redirect('/', 200);
     }
 
     public function validation($params)
