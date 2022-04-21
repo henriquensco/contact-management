@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Contact Management - Home</title>
+    <title>Contact Management - New Contact</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
