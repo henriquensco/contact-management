@@ -19,15 +19,16 @@ use App\Http\Controllers\ContactController;
 Route::prefix('/')->group(function () {
     Route::get('/', function () {
         $data = new ContactController();
+        $data = $data->showAll();
 
-        return view('home', ['data' => $data->showAll()]);
-        //return view('home', ['data' => '$data->showAll()']);
+        return view('home', ['data' => $data->original]);
     });
 
     Route::get('/contact/{id}', function ($id) {
         $data = new ContactController();
-
-        return view('contact', ['data' => $data->showOne($id)]);
+        $data = $data->showOne($id);
+        
+        return view('contact', ['data' => $data->original]);
     });
 
     Route::get('/new', function () {
@@ -36,8 +37,9 @@ Route::prefix('/')->group(function () {
 
     Route::get('/contact/{id}/update', function ($id) {
         $data = new ContactController();
+        $data = $data->showOne($id);
 
-        return view('update', ['data' => $data->showOne($id)]);
+        return view('update', ['data' => $data->original]);
     });
 
     Route::get('/contact/{id}/delete', function ($id) {
