@@ -75,7 +75,7 @@
                     <h3>Are you sure want to delete the contact {{$data->name}} ?</h3>
                     <form method="post" action="{{url('delete')}}/{{$data->id}}">
                         @csrf
-
+                        @method('DELETE')
                         <button>Delete Contact</button>
                     </form>
                 </div>

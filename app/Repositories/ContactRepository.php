@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Models\Contact;
 
@@ -80,7 +81,7 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar atualizar'); 
         }
         
-        return redirect('/', 200);
+        return redirect('/')->setStatusCode(200);
     }
 
     public function delete($contactId)
@@ -93,7 +94,8 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar deletar'); 
         }
 
-        return redirect('/', 200);
+        return redirect('/')->setStatusCode(200);
+        //return Redirect::to('/');
     }
 
     public function validation($params)

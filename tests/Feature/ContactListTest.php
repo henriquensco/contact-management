@@ -6,6 +6,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
+
+
 
 use App\Repositories\ContactRepository;
 
@@ -21,14 +24,14 @@ class ContactListTest extends TestCase
     {   
         $response = $this->get('/');
         
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function test_show_one_contact()
     {
-        $response = $this->get("/contact/6");
+        $response = $this->get("/contact/78");
         
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function test_new_contact()
@@ -39,24 +42,21 @@ class ContactListTest extends TestCase
             'name' => 'Henriquee',
             'contact' => '883333385',
             'email' => 'henrique@gmia.com'
-        ])->assertStatus(201);
+        ])->assertStatus(Response::HTTP_CREATED);
 
     }
 
     public function test_update_contact()
     {
 
-        $this->put('/update/8', 
-        [
-            'name' => 'Henriquee',
-            'contact' => '883333385',
-            'email' => 'henrique@gmia.com'
-        ])->assertStatus(200);
+        $this->putJson('/update/6', ['name' => 'Henriquee', 'contact' => '111111111', 'email' => 'henrique@gmia.com'])
+            ->assertStatus(Response::HTTP_OK);
 
     }
 
-    public function test_delete_contact()
+    public function teste_delete_contact()
     {
-        $this->delete('/delete/8')->assertStatus(200);
+        $this->delete('/delete/76')->assertStatus(Response::HTTP_OK);
     }
+
 }

@@ -124,6 +124,7 @@
         <div id="update-contact">
             <form method="post" action="{{url('update')}}/{{$data->id}}">
                 @csrf
+                @method('PUT')
                 <input type="text" name="name" placeholder="Name" value="{{$data->name}}" />
                 <input type="text" name="contact" placeholder="Contact" value="{{$data->contact}}" />
                 <input type="email" name="email" placeholder="E-mail" value="{{$data->email}}" />
