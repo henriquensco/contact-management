@@ -58,7 +58,7 @@ class ContactRepository
             return back()->withInput()->with('status', 'Houve um erro ao tentar salvar'); 
         }
 
-        return redirect('/', 201);
+        return redirect('/')->setStatusCode(201);
     }
 
     public function update($params, $contactId)
